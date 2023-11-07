@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saikrushna Goli Crud Operations CRUD</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+   <center> <h1>Saikrushna Goli Crud Operations</h1></center>
+
+
+    
+    <table id="dynamic-table">
+        <thead>
+            <tr>
+                <th>Row Number</th>
+                <th>Name</th>
+                <th>CGPA</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><input type="text" name="name" /></td>
+                <td><input type="text" name="cgpa" /></td>
+                <td><input type="text" name="location" /></td>
+                <td>
+                    <button onclick="updateRow(this)">Update</button>
+                    <button onclick="deleteRow(this)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function addRow() {
+            var table = document.getElementById('dynamic-table').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+            var rowNumberCell = newRow.insertCell(0);
+            var nameCell = newRow.insertCell(1);
+            var cgpaCell = newRow.insertCell(2);
+            var locationCell = newRow.insertCell(3);
+            var actionsCell = newRow.insertCell(4);
+            
+            var rowNum = table.rows.length;
+            rowNumberCell.innerHTML = rowNum;
+
+            nameCell.innerHTML = '<input type="text" name="name" />';
+            cgpaCell.innerHTML = '<input type="text" name="cgpa" />';
+            locationCell.innerHTML = '<input type="text" name="location" />';
+            actionsCell.innerHTML = '<button onclick="updateRow(this)">Update</button> <button onclick="deleteRow(this)">Delete</button>';
+        }
+
+        function updateRow(button) {
+            var row = button.parentNode.parentNode;
+            var name = row.cells[1].getElementsByTagName('input')[2].value;
+            var cgpa = row.cells[2].getElementsByTagName('input')[2].value;
+            var location = row.cells[3].getElementsByTagName('input')[2].value;
+
+            // You can add your update logic here, for example, updating the data on the server.
+            // For this example, we will just alert the values.
+            alert('Updated Name: ' + name + ', CGPA: ' + cgpa + ', Location: ' + location);
+        }
+
+        function deleteRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+
+    <center>  <button onclick="addRow()">Add Row</button></center>
+</body>
+</html>
